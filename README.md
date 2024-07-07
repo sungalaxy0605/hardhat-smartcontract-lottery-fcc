@@ -1,592 +1,187 @@
-Contribution: 2023-09-20 20:00
+# Hardhat Smartcontract Lottery (Raffle) FCC
 
-Contribution: 2023-09-20 20:01
+*This repo has been updated to work with Goerli over Rinkeby.*
 
-Contribution: 2023-09-20 20:02
+This is a section of the Javascript Blockchain/Smart Contract FreeCodeCamp Course.
 
-Contribution: 2023-09-20 20:03
+*[⌨️ (13:41:02) Lesson 9: Hardhat Smart Contract Lottery](https://www.youtube.com/watch?v=gyMwXuJrbJQ&t=49262s)*
 
-Contribution: 2023-09-20 20:04
+[Full Repo](https://github.com/smartcontractkit/full-blockchain-solidity-course-js)
 
-Contribution: 2023-09-20 20:05
+- [Hardhat Smartcontract Lottery (Raffle) FCC](#hardhat-smartcontract-lottery-raffle-fcc)
+- [Getting Started](#getting-started)
+  - [Requirements](#requirements)
+  - [Quickstart](#quickstart)
+  - [Typescript](#typescript)
+- [Usage](#usage)
+  - [Testing](#testing)
+    - [Test Coverage](#test-coverage)
+- [Deployment to a testnet or mainnet](#deployment-to-a-testnet-or-mainnet)
+    - [Estimate gas cost in USD](#estimate-gas-cost-in-usd)
+  - [Verify on etherscan](#verify-on-etherscan)
+    - [Typescript differences](#typescript-differences)
+- [Linting](#linting)
+- [Thank you!](#thank-you)
 
-Contribution: 2023-09-20 20:06
+This project is apart of the Hardhat FreeCodeCamp video.
 
-Contribution: 2023-09-21 20:00
+Checkout the full blockchain course video [here.](https://www.youtube.com/watch?v=gyMwXuJrbJQ)
 
-Contribution: 2023-09-21 20:01
+# Getting Started
 
-Contribution: 2023-09-21 20:02
+## Requirements
 
-Contribution: 2023-09-21 20:03
+- [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+  - You'll know you did it right if you can run `git --version` and you see a response like `git version x.x.x`
+- [Nodejs](https://nodejs.org/en/)
+  - You'll know you've installed nodejs right if you can run:
+    - `node --version` and get an ouput like: `vx.x.x`
+- [Yarn](https://yarnpkg.com/getting-started/install) instead of `npm`
+  - You'll know you've installed yarn right if you can run:
+    - `yarn --version` and get an output like: `x.x.x`
+    - You might need to [install it with `npm`](https://classic.yarnpkg.com/lang/en/docs/install/) or `corepack`
 
-Contribution: 2023-09-21 20:04
+## Quickstart
 
-Contribution: 2023-09-21 20:05
+```
+git clone https://github.com/PatrickAlphaC/hardhat-smartcontract-lottery-fcc
+cd hardhat-smartcontract-lottery-fcc
+yarn
+```
 
-Contribution: 2023-09-21 20:06
+## Typescript
 
-Contribution: 2023-09-21 20:07
+If you want to get to typescript and you cloned the javascript version, just run:
 
-Contribution: 2023-09-21 20:08
+```
+git checkout typescript
+yarn 
+```
 
-Contribution: 2023-09-26 20:00
+# Usage
 
-Contribution: 2023-09-26 20:01
+Deploy:
 
-Contribution: 2023-09-26 20:02
+```
+yarn hardhat deploy
+```
 
-Contribution: 2023-09-26 20:03
+## Testing
 
-Contribution: 2023-09-28 20:00
+```
+yarn hardhat test
+```
 
-Contribution: 2023-09-28 20:01
+### Test Coverage
 
-Contribution: 2023-09-28 20:02
+```
+yarn hardhat coverage
+```
 
-Contribution: 2023-10-02 20:00
 
-Contribution: 2023-10-02 20:01
 
-Contribution: 2023-10-02 20:02
+# Deployment to a testnet or mainnet
 
-Contribution: 2023-10-02 20:03
+1. Setup environment variabltes
 
-Contribution: 2023-10-02 20:04
+You'll want to set your `GOERLI_RPC_URL` and `PRIVATE_KEY` as environment variables. You can add them to a `.env` file, similar to what you see in `.env.example`.
 
-Contribution: 2023-10-02 20:05
+- `PRIVATE_KEY`: The private key of your account (like from [metamask](https://metamask.io/)). **NOTE:** FOR DEVELOPMENT, PLEASE USE A KEY THAT DOESN'T HAVE ANY REAL FUNDS ASSOCIATED WITH IT.
+  - You can [learn how to export it here](https://metamask.zendesk.com/hc/en-us/articles/360015289632-How-to-Export-an-Account-Private-Key).
+- `GOERLI_RPC_URL`: This is url of the goerli testnet node you're working with. You can get setup with one for free from [Alchemy](https://alchemy.com/?a=673c802981)
 
-Contribution: 2023-10-02 20:06
+2. Get testnet ETH
 
-Contribution: 2023-10-02 20:07
+Head over to [faucets.chain.link](https://faucets.chain.link/) and get some tesnet ETH & LINK. You should see the ETH and LINK show up in your metamask. [You can read more on setting up your wallet with LINK.](https://docs.chain.link/docs/deploy-your-first-contract/#install-and-fund-your-metamask-wallet)
 
-Contribution: 2023-10-03 20:00
+3. Setup a Chainlink VRF Subscription ID
 
-Contribution: 2023-10-03 20:01
+Head over to [vrf.chain.link](https://vrf.chain.link/) and setup a new subscription, and get a subscriptionId. You can reuse an old subscription if you already have one. 
 
-Contribution: 2023-10-03 20:02
+[You can follow the instructions](https://docs.chain.link/docs/get-a-random-number/) if you get lost. You should leave this step with:
 
-Contribution: 2023-10-03 20:03
+1. A subscription ID
+2. Your subscription should be funded with LINK
 
-Contribution: 2023-10-03 20:04
+3. Deploy
 
-Contribution: 2023-10-03 20:05
+In your `helper-hardhat-config.js` add your `subscriptionId` under the section of the chainId you're using (aka, if you're deploying to goerli, add your `subscriptionId` in the `subscriptionId` field under the `4` section.)
 
-Contribution: 2023-10-04 20:00
+Then run:
+```
+yarn hardhat deploy --network goerli
+```
 
-Contribution: 2023-10-04 20:01
+And copy / remember the contract address. 
 
-Contribution: 2023-10-04 20:02
+4. Add your contract address as a Chainlink VRF Consumer
 
-Contribution: 2023-10-04 20:03
+Go back to [vrf.chain.link](https://vrf.chain.link) and under your subscription add `Add consumer` and add your contract address. You should also fund the contract with a minimum of 1 LINK. 
 
-Contribution: 2023-10-05 20:00
+5. Register a Chainlink Keepers Upkeep
 
-Contribution: 2023-10-05 20:01
+[You can follow the documentation if you get lost.](https://docs.chain.link/docs/chainlink-keepers/compatible-contracts/)
 
-Contribution: 2023-10-05 20:02
+Go to [keepers.chain.link](https://keepers.chain.link/new) and register a new upkeep. Choose `Custom logic` as your trigger mechanism for automation. Your UI will look something like this once completed:
 
-Contribution: 2023-10-05 20:03
+![Keepers](./img/keepers.png)
 
-Contribution: 2023-10-06 20:00
+6. Enter your raffle!
 
-Contribution: 2023-10-06 20:01
+You're contract is now setup to be a tamper proof autonomous verifiably random lottery. Enter the lottery by running:
 
-Contribution: 2023-10-09 20:00
+```
+yarn hardhat run scripts/enter.js --network goerli
+```
 
-Contribution: 2023-10-09 20:01
+### Estimate gas cost in USD
 
-Contribution: 2023-10-09 20:02
+To get a USD estimation of gas cost, you'll need a `COINMARKETCAP_API_KEY` environment variable. You can get one for free from [CoinMarketCap](https://pro.coinmarketcap.com/signup). 
 
-Contribution: 2023-10-09 20:03
+Then, uncomment the line `coinmarketcap: COINMARKETCAP_API_KEY,` in `hardhat.config.js` to get the USD estimation. Just note, everytime you run your tests it will use an API call, so it might make sense to have using coinmarketcap disabled until you need it. You can disable it by just commenting the line back out. 
 
-Contribution: 2023-10-09 20:04
 
-Contribution: 2023-10-10 20:00
 
-Contribution: 2023-10-10 20:01
+## Verify on etherscan
 
-Contribution: 2023-10-10 20:02
+If you deploy to a testnet or mainnet, you can verify it if you get an [API Key](https://etherscan.io/myapikey) from Etherscan and set it as an environemnt variable named `ETHERSCAN_API_KEY`. You can pop it into your `.env` file as seen in the `.env.example`.
 
-Contribution: 2023-10-10 20:03
+In it's current state, if you have your api key set, it will auto verify goerli contracts!
 
-Contribution: 2023-10-10 20:04
+However, you can manual verify with:
 
-Contribution: 2023-10-10 20:05
+```
+yarn hardhat verify --constructor-args arguments.js DEPLOYED_CONTRACT_ADDRESS
+```
 
-Contribution: 2023-10-10 20:06
+### Typescript differences
+1. `.js` files are now `.ts`
+2. We added a bunch of typescript and typing packages to our `package.json`. They can be installed with:
+   1. `yarn add @typechain/ethers-v5 @typechain/hardhat @types/chai @types/node ts-node typechain typescript`
+3. The biggest one being [typechain](https://github.com/dethcrypto/TypeChain)
+   1. This gives your contracts static typing, meaning you'll always know exactly what functions a contract can call. 
+   2. This gives us `factories` that are specific to the contracts they are factories of. See the tests folder for a version of how this is implemented. 
+4. We use `imports` instead of `require`. Confusing to you? [Watch this video](https://www.youtube.com/watch?v=mK54Cn4ceac)
+5. Add `tsconfig.json`
 
-Contribution: 2023-10-10 20:07
+# Linting
 
-Contribution: 2023-10-10 20:08
+To check linting / code formatting:
+```
+yarn lint
+```
+or, to fix: 
+```
+yarn lint:fix
+```
 
-Contribution: 2023-10-10 20:09
+# Thank you!
 
-Contribution: 2023-10-10 20:10
+If you appreciated this, feel free to follow me or donate!
 
-Contribution: 2023-10-11 20:00
+ETH/Polygon/Avalanche/etc Address: 0x9680201d9c93d65a3603d2088d125e955c73BD65
 
-Contribution: 2023-10-11 20:01
-
-Contribution: 2023-10-11 20:02
-
-Contribution: 2023-10-12 20:00
-
-Contribution: 2023-10-12 20:01
-
-Contribution: 2023-10-12 20:02
-
-Contribution: 2023-10-13 20:00
-
-Contribution: 2023-10-13 20:01
-
-Contribution: 2023-10-17 20:00
-
-Contribution: 2023-10-18 20:00
-
-Contribution: 2023-10-18 20:01
-
-Contribution: 2023-10-18 20:02
-
-Contribution: 2023-10-18 20:03
-
-Contribution: 2023-10-18 20:04
-
-Contribution: 2023-10-18 20:05
-
-Contribution: 2023-10-18 20:06
-
-Contribution: 2023-10-18 20:07
-
-Contribution: 2023-10-18 20:08
-
-Contribution: 2023-10-18 20:09
-
-Contribution: 2023-10-18 20:10
-
-Contribution: 2023-10-19 20:00
-
-Contribution: 2023-10-19 20:01
-
-Contribution: 2023-10-23 20:00
-
-Contribution: 2023-10-23 20:01
-
-Contribution: 2023-10-24 20:00
-
-Contribution: 2023-10-24 20:01
-
-Contribution: 2023-10-24 20:02
-
-Contribution: 2023-10-24 20:03
-
-Contribution: 2023-10-24 20:04
-
-Contribution: 2023-10-24 20:05
-
-Contribution: 2023-10-24 20:06
-
-Contribution: 2023-10-24 20:07
-
-Contribution: 2023-10-25 20:00
-
-Contribution: 2023-10-25 20:01
-
-Contribution: 2023-10-25 20:02
-
-Contribution: 2023-10-25 20:03
-
-Contribution: 2023-10-25 20:04
-
-Contribution: 2023-10-25 20:05
-
-Contribution: 2023-10-25 20:06
-
-Contribution: 2023-10-25 20:07
-
-Contribution: 2023-10-25 20:08
-
-Contribution: 2023-10-26 20:00
-
-Contribution: 2023-10-26 20:01
-
-Contribution: 2023-10-26 20:02
-
-Contribution: 2023-10-26 20:03
-
-Contribution: 2023-10-26 20:04
-
-Contribution: 2023-10-26 20:05
-
-Contribution: 2023-10-26 20:06
-
-Contribution: 2023-10-26 20:07
-
-Contribution: 2023-10-27 20:00
-
-Contribution: 2023-10-27 20:01
-
-Contribution: 2023-10-27 20:02
-
-Contribution: 2023-10-27 20:03
-
-Contribution: 2023-10-27 20:04
-
-Contribution: 2023-10-27 20:05
-
-Contribution: 2023-10-27 20:06
-
-Contribution: 2023-10-27 20:07
-
-Contribution: 2023-10-30 20:00
-
-Contribution: 2023-10-30 20:01
-
-Contribution: 2023-10-30 20:02
-
-Contribution: 2023-10-30 20:03
-
-Contribution: 2023-10-30 20:04
-
-Contribution: 2023-10-30 20:05
-
-Contribution: 2023-10-30 20:06
-
-Contribution: 2023-10-30 20:07
-
-Contribution: 2023-10-31 20:00
-
-Contribution: 2023-10-31 20:01
-
-Contribution: 2023-10-31 20:02
-
-Contribution: 2023-10-31 20:03
-
-Contribution: 2023-10-31 20:04
-
-Contribution: 2023-10-31 20:05
-
-Contribution: 2023-11-01 20:00
-
-Contribution: 2023-11-01 20:01
-
-Contribution: 2023-11-01 20:02
-
-Contribution: 2023-11-01 20:03
-
-Contribution: 2023-11-01 20:04
-
-Contribution: 2023-11-01 20:05
-
-Contribution: 2023-11-01 20:06
-
-Contribution: 2023-11-01 20:07
-
-Contribution: 2023-11-01 20:08
-
-Contribution: 2023-11-02 20:00
-
-Contribution: 2023-11-02 20:01
-
-Contribution: 2023-11-02 20:02
-
-Contribution: 2023-11-02 20:03
-
-Contribution: 2023-11-02 20:04
-
-Contribution: 2023-11-02 20:05
-
-Contribution: 2023-11-03 20:00
-
-Contribution: 2023-11-03 20:01
-
-Contribution: 2023-11-03 20:02
-
-Contribution: 2023-11-03 20:03
-
-Contribution: 2023-11-03 20:04
-
-Contribution: 2023-11-03 20:05
-
-Contribution: 2023-11-03 20:06
-
-Contribution: 2023-11-06 20:00
-
-Contribution: 2023-11-06 20:01
-
-Contribution: 2023-11-07 20:00
-
-Contribution: 2023-11-07 20:01
-
-Contribution: 2023-11-07 20:02
-
-Contribution: 2023-11-07 20:03
-
-Contribution: 2023-11-07 20:04
-
-Contribution: 2023-11-07 20:05
-
-Contribution: 2023-11-07 20:06
-
-Contribution: 2023-11-08 20:00
-
-Contribution: 2023-11-09 20:00
-
-Contribution: 2023-11-09 20:01
-
-Contribution: 2023-11-09 20:02
-
-Contribution: 2023-11-09 20:03
-
-Contribution: 2023-11-09 20:04
-
-Contribution: 2023-11-09 20:05
-
-Contribution: 2023-11-10 20:00
-
-Contribution: 2023-11-10 20:01
-
-Contribution: 2023-11-10 20:02
-
-Contribution: 2023-11-10 20:03
-
-Contribution: 2023-11-10 20:04
-
-Contribution: 2023-11-10 20:05
-
-Contribution: 2023-11-10 20:06
-
-Contribution: 2023-11-10 20:07
-
-Contribution: 2023-11-14 20:00
-
-Contribution: 2023-11-14 20:01
-
-Contribution: 2023-11-14 20:02
-
-Contribution: 2023-11-14 20:03
-
-Contribution: 2023-11-14 20:04
-
-Contribution: 2023-11-16 20:00
-
-Contribution: 2023-11-16 20:01
-
-Contribution: 2023-11-16 20:02
-
-Contribution: 2023-11-16 20:03
-
-Contribution: 2023-11-16 20:04
-
-Contribution: 2023-11-17 20:00
-
-Contribution: 2023-11-17 20:01
-
-Contribution: 2023-11-20 20:00
-
-Contribution: 2023-11-21 20:00
-
-Contribution: 2023-11-21 20:01
-
-Contribution: 2023-11-21 20:02
-
-Contribution: 2023-11-21 20:03
-
-Contribution: 2023-11-21 20:04
-
-Contribution: 2023-11-21 20:05
-
-Contribution: 2023-11-23 20:00
-
-Contribution: 2023-11-23 20:01
-
-Contribution: 2023-11-23 20:02
-
-Contribution: 2023-11-23 20:03
-
-Contribution: 2023-11-23 20:04
-
-Contribution: 2023-11-23 20:05
-
-Contribution: 2023-11-23 20:06
-
-Contribution: 2023-11-24 20:00
-
-Contribution: 2023-11-24 20:01
-
-Contribution: 2023-11-28 20:00
-
-Contribution: 2023-11-28 20:01
-
-Contribution: 2023-11-28 20:02
-
-Contribution: 2023-11-28 20:03
-
-Contribution: 2023-11-28 20:04
-
-Contribution: 2023-11-28 20:05
-
-Contribution: 2023-11-28 20:06
-
-Contribution: 2023-11-28 20:07
-
-Contribution: 2023-11-28 20:08
-
-Contribution: 2023-11-29 20:00
-
-Contribution: 2023-11-29 20:01
-
-Contribution: 2023-11-29 20:02
-
-Contribution: 2023-11-29 20:03
-
-Contribution: 2023-11-29 20:04
-
-Contribution: 2023-11-30 20:00
-
-Contribution: 2023-11-30 20:01
-
-Contribution: 2023-11-30 20:02
-
-Contribution: 2023-11-30 20:03
-
-Contribution: 2023-11-30 20:04
-
-Contribution: 2023-11-30 20:05
-
-Contribution: 2023-11-30 20:06
-
-Contribution: 2023-11-30 20:07
-
-Contribution: 2023-12-01 20:00
-
-Contribution: 2023-12-01 20:01
-
-Contribution: 2023-12-01 20:02
-
-Contribution: 2023-12-01 20:03
-
-Contribution: 2023-12-01 20:04
-
-Contribution: 2023-12-01 20:05
-
-Contribution: 2023-12-01 20:06
-
-Contribution: 2023-12-01 20:07
-
-Contribution: 2023-12-01 20:08
-
-Contribution: 2023-12-04 20:00
-
-Contribution: 2023-12-04 20:01
-
-Contribution: 2023-12-04 20:02
-
-Contribution: 2023-12-04 20:03
-
-Contribution: 2023-12-04 20:04
-
-Contribution: 2023-12-04 20:05
-
-Contribution: 2023-12-04 20:06
-
-Contribution: 2023-12-05 20:00
-
-Contribution: 2023-12-05 20:01
-
-Contribution: 2023-12-05 20:02
-
-Contribution: 2023-12-05 20:03
-
-Contribution: 2023-12-05 20:04
-
-Contribution: 2023-12-05 20:05
-
-Contribution: 2023-12-07 20:00
-
-Contribution: 2023-12-07 20:01
-
-Contribution: 2023-12-07 20:02
-
-Contribution: 2023-12-07 20:03
-
-Contribution: 2023-12-07 20:04
-
-Contribution: 2023-12-08 20:00
-
-Contribution: 2023-12-08 20:01
-
-Contribution: 2023-12-08 20:02
-
-Contribution: 2023-12-08 20:03
-
-Contribution: 2023-12-08 20:04
-
-Contribution: 2023-12-08 20:05
-
-Contribution: 2023-12-08 20:06
-
-Contribution: 2023-12-08 20:07
-
-Contribution: 2023-12-12 20:00
-
-Contribution: 2023-12-12 20:01
-
-Contribution: 2023-12-12 20:02
-
-Contribution: 2023-12-12 20:03
-
-Contribution: 2023-12-12 20:04
-
-Contribution: 2023-12-13 20:00
-
-Contribution: 2023-12-13 20:01
-
-Contribution: 2023-12-13 20:02
-
-Contribution: 2023-12-13 20:03
-
-Contribution: 2023-12-13 20:04
-
-Contribution: 2023-12-13 20:05
-
-Contribution: 2023-12-13 20:06
-
-Contribution: 2023-12-13 20:07
-
-Contribution: 2023-12-15 20:00
-
-Contribution: 2023-12-15 20:01
-
-Contribution: 2023-12-15 20:02
-
-Contribution: 2023-12-15 20:03
-
-Contribution: 2023-12-15 20:04
-
-Contribution: 2023-12-15 20:05
-
-Contribution: 2023-12-15 20:06
-
-Contribution: 2023-12-15 20:07
-
-Contribution: 2023-12-15 20:08
-
-Contribution: 2023-12-21 20:00
-
-Contribution: 2023-12-21 20:01
-
-Contribution: 2023-12-21 20:02
-
-Contribution: 2023-12-21 20:03
-
-Contribution: 2023-12-22 20:00
-
-Contribution: 2023-12-22 20:01
-
-Contribution: 2023-12-22 20:02
-
-Contribution: 2023-12-22 20:03
-
-Contribution: 2023-12-22 20:04
-
+[![Patrick Collins Twitter](https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/PatrickAlphaC)
+[![Patrick Collins YouTube](https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/channel/UCn-3f8tw_E1jZvhuHatROwA)
+[![Patrick Collins Linkedin](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/patrickalphac/)
+[![Patrick Collins Medium](https://img.shields.io/badge/Medium-000000?style=for-the-badge&logo=medium&logoColor=white)](https://medium.com/@patrick.collins_58673/)
